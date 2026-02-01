@@ -16,27 +16,27 @@ char readChar(string s) {
 	cin >> s2;
 	return s2;
 }
-void solve() {
-	vector<string> vS;
-	string s = readString("");
-	string delimiter = " ",sWord;
-	short pos = 0;
-	int count = 0;
-	while ((pos=s.find(delimiter)) != std::string::npos) {
-		sWord = s.substr(0, pos);
-		if (!sWord.empty())
-			vS.push_back(sWord);
-		s.erase(0, pos + delimiter.length());
+string solve(vector<string> vS,string s1) {
+	string  s2;
+	for (string a:vS) {
+		s2 = s2+a + s1;
 	}
-	if (s!="")
+	return s2.substr(0, s2.length() - s1.length());
+	
+}
+string solve(string s[],int length, string delimter) {
+	string  s2;
+	for (int i = 0; i < length; i++)
 	{
-		vS.push_back(s);
+		s2 = s2 + s[i] + delimter;
 	}
-	cout << "the number word in your strig is: " << vS.size() << endl;
-	 for (string x : vS) {
-        cout << x << endl;
-    }
+	
+	return s2.substr(0, s2.length() - delimter.length());
+
 }
 int main() {
-	solve();
+	vector<string> v1 = { "husam","deif","alla","odeh" };\
+	string v2[6] = {"husam","deif","alla","odeh"};
+	cout<<solve(v2,4,"@")<<endl;
+
 }
