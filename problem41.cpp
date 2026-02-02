@@ -16,27 +16,49 @@ char readChar(string s) {
 	cin >> s2;
 	return s2;
 }
-bool isVowels(char c1) {
-	c1 = tolower(c1);
-	if (c1 == 'i' || c1 == 'o' || c1 == 'u' || c1 == 'a' || c1 == 'e')
-		return true;
-	else
-		return false;
+string solve(vector<string> vS,string s1) {
+	string  s2;
+	for (string a:vS) {
+		s2 = s2+a + s1;
+	}
+	return s2.substr(0, s2.length() - s1.length());
+	
 }
-void solve() {
+string solve(string s[],int length, string delimter) {
+	string  s2;
+	for (int i = 0; i < length; i++)
+	{
+		s2 = s2 + s[i] + delimter;
+	}
+	
+	return s2.substr(0, s2.length() - delimter.length());
+
+}
+vector<string> splite (string s,string delimiter) {
 	vector<string> vS;
-	string s = readString("");
-	string delimiter = " ",sWord;
+	string  sWord;
 	short pos = 0;
 	int count = 0;
-	while ((pos=s.find(delimiter)) != std::string::npos) {
+	while ((pos = s.find(delimiter)) != std::string::npos) {
 		sWord = s.substr(0, pos);
 		if (!sWord.empty())
 			vS.push_back(sWord);
 		s.erase(0, pos + delimiter.length());
 	}
-
+	if (s != "")
+	{
+		vS.push_back(s);
+	}
+	return vS;
 }
 int main() {
-	solve();
+	cout << "Enter your string: ";
+	string s2;
+	getline(cin, s2);
+	vector<string> v1 = { "husam","deif","alla","odeh" };
+	vector<string> v2 = splite(s2, " ");
+	for (int i = v2.size()-1; i >= 0; i--)
+	{
+		cout << v2[i] << " ";
+	}
 }
